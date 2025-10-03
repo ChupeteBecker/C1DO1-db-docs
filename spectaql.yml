@@ -1,0 +1,29 @@
+introspection:
+  # Opción A: si descargaste el schema
+  #file: ./schema.graphql
+  # Opción B: si prefieres conectarte directo
+  url: http://localhost:3000/graphql
+
+info:
+  title: "API GraphQL C1DO1"
+  description: |
+    Documentación generada automáticamente a partir del schema GraphQL.
+    Incluye todos los tipos, queries, mutations y descripciones declaradas en el backend.
+  contact:
+    name: "Equipo QA / Dev"
+    email: "qa@c1do1.ai"
+  license:
+    name: "Propietario interno"
+    url: "https://c1do1.ai"
+
+servers:
+  - url: "http://localhost:3000/graphql"
+    description: "Servidor local de desarrollo"
+
+settings:
+  grouping:
+    query: "Queries"
+    mutation: "Mutations"
+    subscription: "Subscriptions"
+  examples: true
+  deprecations: true
