@@ -159,7 +159,7 @@ spectaql spectaql.yml
 ## 🌐 Documentación de la API GraphQL
 
 La documentacion fue añadida a siguiente repositorio:
-👉 [Repo C1DO1 API Docs](https://loquacious-kashata-c6d947.netlify.app/)
+👉 [Repo C1DO1 API Docs](https://github.com/ChupeteBecker/C1DO1-db-docs.git)
 
 La documentación generada con [SpectaQL](https://github.com/anvilco/spectaql) está disponible públicamente en:
 
@@ -182,3 +182,89 @@ git add .
 git commit -m "docs: actualizar documentación GraphQL"
 git push
 ```
+
+## 🧩 ¿Qué es GraphQL y cómo funciona?
+
+**GraphQL** es un lenguaje de consultas para APIs y un *runtime* que permite a los clientes pedir exactamente los datos que necesitan, ni más ni menos.
+
+Fue desarrollado por Facebook y hoy es un estándar abierto usado ampliamente en aplicaciones web y móviles.
+
+### 🔎 Conceptos clave
+
+- **Schema (esquema):**
+    
+    Define los tipos de datos, sus campos y las operaciones disponibles.
+    
+    Actúa como contrato entre el frontend y el backend.
+    
+- **Types (Tipos):**
+    
+    Representan los objetos y estructuras de datos (por ejemplo `User`, `Course`, `MutationResponse`).
+    
+- **Queries:**
+    
+    Operaciones para **leer** información. El cliente especifica qué campos quiere recibir.
+    
+- **Mutations:**
+    
+    Operaciones para **crear, actualizar o eliminar** datos en el servidor.
+    
+- **Subscriptions:**
+    
+    Permiten recibir datos en tiempo real cuando ocurren cambios en el servidor.
+    
+- **Introspection:**
+    
+    Funcionalidad integrada que permite descubrir automáticamente la estructura de la API (ideal para herramientas de documentación y autocompletado).
+    
+
+### ⚡ Flujo de funcionamiento
+
+1. **Definición del Schema**
+    
+    El backend (en este caso Ruby con la gema [`graphql-ruby`](https://graphql-ruby.org/)) define tipos, queries y mutations usando clases y campos con descripciones.
+    
+2. **Petición desde el Cliente**
+    
+    El frontend envía una consulta en formato GraphQL, indicando exactamente los campos que necesita.
+    
+    Ejemplo:
+    
+    ```graphql
+    query {
+      user(id: 1) {
+        id
+        email
+        profile {
+          name
+          avatarUrl
+        }
+      }
+    }
+    
+    ```
+    
+
+1. **Resolución en el Servidor**
+    
+    El servidor recibe la consulta y, basándose en el schema, ejecuta resolvers (métodos Ruby) que obtienen los datos desde la base de datos u otros servicios.
+    
+2. **Respuesta Precisa**
+    
+    El servidor responde solo con los campos solicitados:
+    
+    ```json
+    {
+      "data": {
+        "user": {
+          "id": "1",
+          "email": "user@example.com",
+          "profile": {
+            "name": "Nombre Apellido",
+            "avatarUrl": "https://cdn.example.com/avatar.png"
+          }
+        }
+      }
+    }
+    
+    ```
